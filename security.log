@@ -1,0 +1,525 @@
+2025-04-30 05:12:49,953 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:12:49,953 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:12:49,953 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:12:50,068 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:12:50,069 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:13:00,350 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:00] "GET / HTTP/1.1" 200 -
+2025-04-30 05:13:01,260 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:01] "GET / HTTP/1.1" 200 -
+2025-04-30 05:13:02,688 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:02] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:13:05,789 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:05] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-30 05:13:05,813 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:05] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 05:13:05,814 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:05] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 05:13:05,831 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:05] "GET /login?__debugger__=yes&cmd=resource&f=console.png&s=uhTNSt5V1xbE4br7M0eR HTTP/1.1" 200 -
+2025-04-30 05:13:05,831 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:05] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 05:13:09,596 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:09] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:13:15,480 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:15] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-30 05:13:15,500 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:15] "[36mGET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 05:13:15,500 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:15] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 05:13:15,510 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:15] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png&s=uhTNSt5V1xbE4br7M0eR HTTP/1.1[0m" 304 -
+2025-04-30 05:13:21,848 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:21] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:13:25,520 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:25] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:13:25,562 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:13:28,598 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:28] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-30 05:13:28,624 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:28] "[36mGET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 05:13:28,625 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:28] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 05:13:28,631 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:13:28] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png&s=uhTNSt5V1xbE4br7M0eR HTTP/1.1[0m" 304 -
+2025-04-30 05:16:07,650 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:16:07,650 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:16:07,650 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:16:07,803 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:16:07,804 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:17:11,887 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:17:11,929 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:17:12,106 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:17:12,108 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:17:13,114 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:17:13,143 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:17:13,304 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:17:13,305 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:17:34,338 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:17:34,385 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:17:34,569 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:17:34,571 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:18:13,624 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:18:13,665 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:18:13,832 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:18:13,833 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:18:24,851 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:18:24,886 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:18:25,049 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:18:25,051 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:20:28,793 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:20:28,793 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:20:28,793 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:20:28,941 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:20:28,942 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:20:33,044 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:20:33] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-30 05:20:33,080 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:20:33] "GET /login?__debugger__=yes&cmd=resource&f=console.png&s=AHGEFs7HjLkK4rgaD2Ep HTTP/1.1" 200 -
+2025-04-30 05:20:39,727 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:20:39] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:20:46,868 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Search Request, Severity: Low, Endpoint: /victim/search
+2025-04-30 05:20:46,885 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Database Error, Severity: High, Endpoint: /victim/search
+2025-04-30 05:20:46,887 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:20:46] "GET /victim/search?q='1%3D1 HTTP/1.1" 200 -
+2025-04-30 05:20:55,386 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:20:55] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-30 05:20:55,404 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:20:55] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 05:20:55,405 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:20:55] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 05:20:55,416 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:20:55] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 05:20:55,417 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:20:55] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=AHGEFs7HjLkK4rgaD2Ep HTTP/1.1" 200 -
+2025-04-30 05:21:02,810 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:02] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:21:02,830 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:02] "[32mGET /api/stats HTTP/1.1[0m" 302 -
+2025-04-30 05:21:03,820 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:03] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-04-30 05:21:03,850 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:03] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 05:21:03,850 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:03] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-30 05:21:03,861 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:03] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=AHGEFs7HjLkK4rgaD2Ep HTTP/1.1[0m" 304 -
+2025-04-30 05:21:04,934 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:04] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:21:06,568 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:06] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-04-30 05:21:06,574 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:06] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-30 05:21:06,599 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:06] "[36mGET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 05:21:06,599 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:06] "[36mGET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-30 05:21:06,608 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:06] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png&s=AHGEFs7HjLkK4rgaD2Ep HTTP/1.1[0m" 304 -
+2025-04-30 05:21:13,832 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:13] "[32mGET /admin HTTP/1.1[0m" 302 -
+2025-04-30 05:21:13,838 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:13] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-30 05:21:13,857 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:13] "[36mGET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-30 05:21:13,857 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:13] "[36mGET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 05:21:13,867 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:13] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png&s=AHGEFs7HjLkK4rgaD2Ep HTTP/1.1[0m" 304 -
+2025-04-30 05:21:14,610 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:14] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-30 05:21:14,626 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:14] "[36mGET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-30 05:21:14,626 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:14] "[36mGET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 05:21:14,636 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:21:14] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png&s=AHGEFs7HjLkK4rgaD2Ep HTTP/1.1[0m" 304 -
+2025-04-30 05:25:04,957 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:25:04,957 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:25:04,957 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:25:05,115 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:25:05,117 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:25:09,319 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:09] "GET / HTTP/1.1" 200 -
+2025-04-30 05:25:11,877 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:11] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:25:14,884 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:25:14,885 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:14] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:25:14,888 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:14] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-04-30 05:25:14,896 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:14] "GET /admin HTTP/1.1" 200 -
+2025-04-30 05:25:14,953 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:14] "GET /api/stats HTTP/1.1" 200 -
+2025-04-30 05:25:14,954 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:14] "GET /api/logs HTTP/1.1" 200 -
+2025-04-30 05:25:28,415 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:28] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-04-30 05:25:28,420 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:28] "GET /admin HTTP/1.1" 200 -
+2025-04-30 05:25:28,452 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:25:28,471 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:28] "GET /api/stats HTTP/1.1" 200 -
+2025-04-30 05:25:28,471 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:28] "GET /api/logs HTTP/1.1" 200 -
+2025-04-30 05:25:29,688 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:29] "GET / HTTP/1.1" 200 -
+2025-04-30 05:25:29,729 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:25:30,533 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:30] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-04-30 05:25:30,540 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:30] "GET /admin HTTP/1.1" 200 -
+2025-04-30 05:25:30,594 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:30] "GET /api/stats HTTP/1.1" 200 -
+2025-04-30 05:25:30,594 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:30] "GET /api/logs HTTP/1.1" 200 -
+2025-04-30 05:25:32,472 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:32] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:25:36,030 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:36] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:25:43,972 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Search Request, Severity: Low, Endpoint: /victim/search
+2025-04-30 05:25:43,975 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:43] "GET /victim/search HTTP/1.1" 200 -
+2025-04-30 05:25:52,739 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:25:52] "GET /victim/ping HTTP/1.1" 200 -
+2025-04-30 05:26:08,545 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Ping Request, Severity: Low, Endpoint: /victim/ping
+2025-04-30 05:26:08,554 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:08] "POST /victim/ping HTTP/1.1" 200 -
+2025-04-30 05:26:11,297 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:11] "GET /victim/ping HTTP/1.1" 200 -
+2025-04-30 05:26:16,078 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:16] "GET / HTTP/1.1" 200 -
+2025-04-30 05:26:18,189 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:18] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-04-30 05:26:18,197 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:18] "GET /admin HTTP/1.1" 200 -
+2025-04-30 05:26:18,248 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:18] "GET /api/stats HTTP/1.1" 200 -
+2025-04-30 05:26:18,248 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:18] "GET /api/logs HTTP/1.1" 200 -
+2025-04-30 05:26:41,944 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:41] "GET / HTTP/1.1" 200 -
+2025-04-30 05:26:52,108 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:52] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:26:52,141 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:26:53,243 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:26:53] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:27:02,010 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:27:02] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-04-30 05:27:02,013 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:27:02] "GET /admin HTTP/1.1" 200 -
+2025-04-30 05:27:02,065 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:27:02] "GET /api/stats HTTP/1.1" 200 -
+2025-04-30 05:27:02,065 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:27:02] "GET /api/logs HTTP/1.1" 200 -
+2025-04-30 05:27:05,962 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:27:05] "GET / HTTP/1.1" 200 -
+2025-04-30 05:27:05,993 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:27:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:34:07,476 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:34:07,476 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:34:07,477 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:34:07,745 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:34:07,747 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:34:12,025 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:12] "GET / HTTP/1.1" 200 -
+2025-04-30 05:34:13,464 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:13] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:34:16,342 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Failed, Severity: Medium, Endpoint: /login
+2025-04-30 05:34:16,343 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:16] "POST /login HTTP/1.1" 200 -
+2025-04-30 05:34:18,875 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:34:18,876 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:18] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:34:18,891 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:18] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:34:38,819 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:38] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:34:39,432 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:39] "[35m[1mGET /logs HTTP/1.1[0m" 500 -
+2025-04-30 05:34:39,459 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:39] "GET /logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 05:34:39,461 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:39] "GET /logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 05:34:39,467 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:39] "GET /logs?__debugger__=yes&cmd=resource&f=console.png&s=C9Xpr4rS92QOnVauijoE HTTP/1.1" 200 -
+2025-04-30 05:34:39,467 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:39] "GET /logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 05:34:43,418 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:43] "[35m[1mGET /logs HTTP/1.1[0m" 500 -
+2025-04-30 05:34:43,438 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:43] "[36mGET /logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 05:34:43,440 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:43] "[36mGET /logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-30 05:34:43,448 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:43] "[36mGET /logs?__debugger__=yes&cmd=resource&f=console.png&s=C9Xpr4rS92QOnVauijoE HTTP/1.1[0m" 304 -
+2025-04-30 05:34:46,027 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:34:46] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:35:39,936 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:35:40,083 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:35:40,505 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:35:40,506 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:36:12,583 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:36:12,732 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:36:13,097 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:36:13,100 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:36:20,120 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:36:20,235 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:36:20,591 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:36:20,593 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:37:02,386 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:37:02,386 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:37:02,387 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:37:02,647 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:37:02,649 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:37:04,666 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:04] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-04-30 05:37:04,678 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:04] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:37:13,387 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Failed, Severity: Medium, Endpoint: /login
+2025-04-30 05:37:13,388 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:13] "POST /login HTTP/1.1" 200 -
+2025-04-30 05:37:17,193 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:37:17,194 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:17] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:37:17,208 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:17] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:37:30,069 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:30] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:37:30,768 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:30] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:37:47,626 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:47] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:37:50,321 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:50] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:37:58,337 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:58] "GET / HTTP/1.1" 200 -
+2025-04-30 05:37:58,372 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:37:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:38:28,090 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:38:28,090 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:38:28,090 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:38:28,362 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:38:28,363 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:38:29,929 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:38:29] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-04-30 05:38:29,938 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:38:29] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:38:33,934 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:38:33,934 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:38:33] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:38:33,949 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:38:33] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:40:03,415 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:40:03] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:40:03,483 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:40:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:40:08,986 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:40:08] "GET / HTTP/1.1" 200 -
+2025-04-30 05:40:09,052 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:40:09] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:40:10,401 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:40:10] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:40:10,472 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:40:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:40:11,141 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:40:11] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:40:12,015 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:40:12] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:40:13,860 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:40:13] "GET / HTTP/1.1" 200 -
+2025-04-30 05:43:02,930 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:43:03,054 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:43:03,427 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:43:03,429 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:43:21,473 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:43:21,600 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:43:21,885 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:43:21,886 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:43:29,373 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:43:29,374 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:43:29,374 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:43:29,646 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:43:29,647 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:43:32,231 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:32] "GET / HTTP/1.1" 200 -
+2025-04-30 05:43:33,310 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:33] "GET / HTTP/1.1" 200 -
+2025-04-30 05:43:37,766 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:37] "GET / HTTP/1.1" 200 -
+2025-04-30 05:43:38,454 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:38] "GET / HTTP/1.1" 200 -
+2025-04-30 05:43:40,383 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:40] "GET / HTTP/1.1" 200 -
+2025-04-30 05:43:40,413 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:40] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:43:42,991 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:42] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:43:45,239 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:45] "GET / HTTP/1.1" 200 -
+2025-04-30 05:43:45,279 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:43:48,187 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:48] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:43:50,638 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:43:50,638 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:50] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:43:50,654 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:43:50] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:44:00,900 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:00] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:44:08,705 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:08] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:44:08,740 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:08] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:44:09,763 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:09] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:44:11,558 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:11] "[35m[1mGET /victim/products HTTP/1.1[0m" 500 -
+2025-04-30 05:44:11,576 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:11] "GET /victim/products?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 05:44:11,579 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:11] "GET /victim/products?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 05:44:11,587 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:11] "GET /victim/products?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 05:44:11,588 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:11] "GET /victim/products?__debugger__=yes&cmd=resource&f=console.png&s=JSN6zbqUd3gIao4ojDNj HTTP/1.1" 200 -
+2025-04-30 05:44:21,506 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:21] "GET / HTTP/1.1" 200 -
+2025-04-30 05:44:21,545 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:44:50,274 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:44:50,274 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:44:50,275 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:44:50,568 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:44:50,570 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:44:53,250 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:53] "GET / HTTP/1.1" 200 -
+2025-04-30 05:44:54,753 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:54] "GET / HTTP/1.1" 200 -
+2025-04-30 05:44:56,788 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:56] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:44:59,796 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:44:59,797 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:59] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:44:59,813 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:44:59] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:45:08,796 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:08] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:45:12,385 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:12] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:45:12,422 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:45:13,145 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:13] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:45:16,476 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:16] "GET / HTTP/1.1" 200 -
+2025-04-30 05:45:19,304 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:19] "GET / HTTP/1.1" 200 -
+2025-04-30 05:45:19,337 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:45:39,874 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:45:39,874 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:45:39,875 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:45:40,175 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:45:40,177 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:45:48,003 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:48] "[32mGET /system-status HTTP/1.1[0m" 302 -
+2025-04-30 05:45:48,018 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:48] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:45:51,665 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:45:51,666 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:51] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:45:51,683 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:51] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:45:58,093 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:45:58] "GET /system-status HTTP/1.1" 200 -
+2025-04-30 05:49:46,720 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:49:46] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:50:10,752 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:50:10,862 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:50:37,382 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:50:37,382 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:50:37,383 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:50:37,736 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:50:37,737 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:51:15,083 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:15] "GET / HTTP/1.1" 200 -
+2025-04-30 05:51:15,119 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:15] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:51:17,028 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:17] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:51:20,120 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:51:20,120 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:20] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:51:20,137 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:20] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:51:27,809 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:27] "GET /system-status HTTP/1.1" 200 -
+2025-04-30 05:51:33,667 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:33] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:51:41,568 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:41] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:51:41,612 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:41] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:51:42,137 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:42] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:51:47,111 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:47] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:51:47,147 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:47] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:51:47,674 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:47] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:51:48,677 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:48] "[35m[1mGET /victim/products HTTP/1.1[0m" 500 -
+2025-04-30 05:51:48,705 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:48] "[36mGET /victim/products?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-30 05:51:48,705 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:48] "[36mGET /victim/products?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-30 05:51:48,716 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:48] "GET /victim/products?__debugger__=yes&cmd=resource&f=console.png&s=tNMt8mgMSk1UpJA0FJe6 HTTP/1.1" 200 -
+2025-04-30 05:51:53,173 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:51:53] "GET / HTTP/1.1" 200 -
+2025-04-30 05:52:11,802 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:52:11] "GET / HTTP/1.1" 200 -
+2025-04-30 05:52:11,837 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:52:11] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:52:12,520 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:52:12] "GET / HTTP/1.1" 200 -
+2025-04-30 05:52:13,192 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:52:13] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:52:13,239 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:52:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:52:14,327 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:52:14] "GET / HTTP/1.1" 200 -
+2025-04-30 05:53:47,589 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:53:47] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:53:52,012 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:53:52] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:53:52,062 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:53:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:55:46,587 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 05:55:46,587 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 05:55:46,588 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 05:55:46,911 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 05:55:46,913 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 05:55:50,990 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:55:50] "GET / HTTP/1.1" 200 -
+2025-04-30 05:55:51,040 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:55:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:55:58,546 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:55:58] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:56:00,816 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:56:00,817 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:00] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:56:00,833 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:00] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:56:07,208 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:07] "GET /api/threats HTTP/1.1" 200 -
+2025-04-30 05:56:07,210 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:07] "GET /api/vulnerabilities HTTP/1.1" 200 -
+2025-04-30 05:56:07,211 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:07] "GET /api/incidents HTTP/1.1" 200 -
+2025-04-30 05:56:28,671 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:28] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:56:28,715 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:56:30,270 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:30] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:56:38,369 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:38] "GET / HTTP/1.1" 200 -
+2025-04-30 05:56:40,434 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:40] "GET /login HTTP/1.1" 200 -
+2025-04-30 05:56:42,844 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 05:56:42,845 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:42] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 05:56:42,850 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:56:42] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 05:57:00,298 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:00] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:57:00,340 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 05:57:03,336 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:03] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:57:07,059 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: File View Request, Severity: Low, Endpoint: /victim/view
+2025-04-30 05:57:07,072 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: File Access Error, Severity: High, Endpoint: /victim/view
+2025-04-30 05:57:07,075 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:07] "GET /victim/view HTTP/1.1" 200 -
+2025-04-30 05:57:13,808 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: File Download Request, Severity: Low, Endpoint: /victim/download
+2025-04-30 05:57:13,822 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: File Download Error, Severity: High, Endpoint: /victim/download
+2025-04-30 05:57:13,824 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:13] "GET /victim/download HTTP/1.1" 200 -
+2025-04-30 05:57:18,045 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:18] "GET /victim/comment HTTP/1.1" 200 -
+2025-04-30 05:57:20,622 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Search Request, Severity: Low, Endpoint: /victim/search
+2025-04-30 05:57:20,626 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:20] "[35m[1mGET /victim/search HTTP/1.1[0m" 500 -
+2025-04-30 05:57:20,654 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:20] "GET /victim/search?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 05:57:20,657 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:20] "GET /victim/search?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 05:57:20,667 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:20] "GET /victim/search?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 05:57:20,667 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:20] "GET /victim/search?__debugger__=yes&cmd=resource&f=console.png&s=Ul2XFhKCqSPM6I5hanUi HTTP/1.1" 200 -
+2025-04-30 05:57:24,105 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:24] "GET /victim/comment HTTP/1.1" 200 -
+2025-04-30 05:57:43,683 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:57:43] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:58:00,216 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:58:00] "GET /logs HTTP/1.1" 200 -
+2025-04-30 05:58:03,494 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:58:03] "GET /victim HTTP/1.1" 200 -
+2025-04-30 05:58:07,312 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: File View Request, Severity: Low, Endpoint: /victim/view
+2025-04-30 05:58:07,326 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: File Access Error, Severity: High, Endpoint: /victim/view
+2025-04-30 05:58:07,326 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 05:58:07] "GET /victim/view HTTP/1.1" 200 -
+2025-04-30 05:59:43,498 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 05:59:43,623 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 06:05:31,910 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 06:05:31,910 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 06:05:31,911 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 06:05:32,257 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 06:05:32,259 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 06:05:38,816 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:05:38] "GET / HTTP/1.1" 200 -
+2025-04-30 06:05:38,855 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:05:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:05:46,734 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:05:46] "GET /login HTTP/1.1" 200 -
+2025-04-30 06:05:50,366 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 06:05:50,367 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:05:50] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 06:05:50,378 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:05:50] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 06:05:57,736 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:05:57] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 06:06:00,665 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:06:00] "GET /logs HTTP/1.1" 200 -
+2025-04-30 06:06:00,704 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:06:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:06:03,311 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:06:03] "GET /victim HTTP/1.1" 200 -
+2025-04-30 06:06:31,869 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:06:31] "GET /victim HTTP/1.1" 200 -
+2025-04-30 06:06:33,305 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:06:33] "GET / HTTP/1.1" 200 -
+2025-04-30 06:07:34,918 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 06:07:34,918 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 06:07:34,919 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 06:07:35,258 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 06:07:35,259 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 06:07:38,665 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:07:38] "GET / HTTP/1.1" 200 -
+2025-04-30 06:07:38,698 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:07:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:07:39,583 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:07:39] "GET / HTTP/1.1" 200 -
+2025-04-30 06:07:46,588 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:07:46] "GET /login HTTP/1.1" 200 -
+2025-04-30 06:07:49,689 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 06:07:49,690 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:07:49] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 06:07:49,702 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:07:49] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 06:08:00,876 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:08:00] "GET /vulnerability-scan HTTP/1.1" 200 -
+2025-04-30 06:08:04,728 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:08:04] "GET /network-monitor HTTP/1.1" 200 -
+2025-04-30 06:08:11,443 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:08:11] "GET /security-report HTTP/1.1" 200 -
+2025-04-30 06:08:34,924 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:08:34] "GET /api/threats HTTP/1.1" 200 -
+2025-04-30 06:08:34,931 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:08:34] "GET /api/vulnerabilities HTTP/1.1" 200 -
+2025-04-30 06:08:34,933 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:08:34] "GET /api/incidents HTTP/1.1" 200 -
+2025-04-30 06:08:40,775 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:08:40] "GET /logs HTTP/1.1" 200 -
+2025-04-30 06:08:40,819 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:08:40] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:08:53,110 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:08:53] "GET /victim HTTP/1.1" 200 -
+2025-04-30 06:09:00,936 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:09:00] "GET /victim/products HTTP/1.1" 200 -
+2025-04-30 06:09:03,974 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:09:03] "GET / HTTP/1.1" 200 -
+2025-04-30 06:09:08,213 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:09:08] "GET / HTTP/1.1" 200 -
+2025-04-30 06:09:17,758 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:09:17] "GET / HTTP/1.1" 200 -
+2025-04-30 06:09:17,797 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:09:17] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:09:18,679 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:09:18] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 06:14:13,012 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 06:14:13,012 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 06:14:13,013 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 06:14:13,354 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 06:14:13,356 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 06:14:14,849 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:14:14] "GET / HTTP/1.1" 200 -
+2025-04-30 06:14:14,878 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:14:14] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:14:16,558 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:14:16] "GET / HTTP/1.1" 200 -
+2025-04-30 06:14:16,931 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:14:16] "GET / HTTP/1.1" 200 -
+2025-04-30 06:14:17,907 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:14:17] "GET /login HTTP/1.1" 200 -
+2025-04-30 06:14:21,210 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 06:14:21,211 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:14:21] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 06:14:21,223 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:14:21] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 06:15:32,742 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:15:32] "GET /vulnerability-scan HTTP/1.1" 200 -
+2025-04-30 06:15:40,190 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Vulnerability Scan, Severity: Medium, Endpoint: /vulnerability-scan
+2025-04-30 06:15:40,190 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:15:40] "POST /vulnerability-scan HTTP/1.1" 200 -
+2025-04-30 06:15:49,351 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:15:49] "GET /vulnerability-scan HTTP/1.1" 200 -
+2025-04-30 06:15:49,382 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:15:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:19:13,130 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 06:19:13,326 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 06:19:13,827 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 06:19:13,828 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 06:19:38,913 - werkzeug - INFO -  * Detected change in '/home/zerzex/Documents/claude/app.py', reloading
+2025-04-30 06:19:39,045 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 06:19:39,548 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 06:19:39,550 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 06:19:45,449 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 06:19:45,449 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 06:19:45,450 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 06:19:45,786 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 06:19:45,787 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 06:19:50,154 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:19:50] "GET / HTTP/1.1" 200 -
+2025-04-30 06:19:50,193 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:19:50] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:19:51,371 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:19:51] "GET / HTTP/1.1" 200 -
+2025-04-30 06:19:54,177 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:19:54] "GET /login HTTP/1.1" 200 -
+2025-04-30 06:19:56,707 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 06:19:56,708 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:19:56] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 06:19:56,721 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:19:56] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 06:20:00,696 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:00] "[35m[1mGET /threat-intelligence HTTP/1.1[0m" 500 -
+2025-04-30 06:20:00,726 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:00] "GET /threat-intelligence?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 06:20:00,727 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:00] "GET /threat-intelligence?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 06:20:00,736 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:00] "GET /threat-intelligence?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 06:20:00,736 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:00] "GET /threat-intelligence?__debugger__=yes&cmd=resource&f=console.png&s=YHc8tbO6A7rlAv1lrIG6 HTTP/1.1" 200 -
+2025-04-30 06:20:10,789 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:20:12,459 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:12] "[35m[1mGET /vulnerability-data HTTP/1.1[0m" 500 -
+2025-04-30 06:20:12,476 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:12] "GET /vulnerability-data?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 06:20:12,476 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:12] "GET /vulnerability-data?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 06:20:12,485 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:12] "GET /vulnerability-data?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 06:20:12,485 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:12] "GET /vulnerability-data?__debugger__=yes&cmd=resource&f=console.png&s=YHc8tbO6A7rlAv1lrIG6 HTTP/1.1" 200 -
+2025-04-30 06:20:15,501 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:15] "[35m[1mGET /incident-data HTTP/1.1[0m" 500 -
+2025-04-30 06:20:15,522 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:15] "GET /incident-data?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 06:20:15,522 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:15] "GET /incident-data?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 06:20:15,530 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:15] "GET /incident-data?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 06:20:15,530 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:15] "GET /incident-data?__debugger__=yes&cmd=resource&f=console.png&s=YHc8tbO6A7rlAv1lrIG6 HTTP/1.1" 200 -
+2025-04-30 06:20:17,967 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:17] "[35m[1mGET /analytics HTTP/1.1[0m" 500 -
+2025-04-30 06:20:17,995 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:17] "GET /analytics?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-30 06:20:17,995 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:17] "GET /analytics?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-30 06:20:18,002 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:18] "GET /analytics?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-30 06:20:18,007 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:20:18] "GET /analytics?__debugger__=yes&cmd=resource&f=console.png&s=YHc8tbO6A7rlAv1lrIG6 HTTP/1.1" 200 -
+2025-04-30 06:23:34,464 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.178:5000
+2025-04-30 06:23:34,464 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-30 06:23:34,465 - werkzeug - INFO -  * Restarting with stat
+2025-04-30 06:23:34,808 - werkzeug - WARNING -  * Debugger is active!
+2025-04-30 06:23:34,810 - werkzeug - INFO -  * Debugger PIN: 754-930-446
+2025-04-30 06:23:36,848 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:23:36] "GET / HTTP/1.1" 200 -
+2025-04-30 06:23:36,883 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:23:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-30 06:23:38,487 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:23:38] "GET /login HTTP/1.1" 200 -
+2025-04-30 06:23:40,754 - security_monitor - INFO - Request logged - IP: 127.0.0.1, Type: Login Success, Severity: Low, Endpoint: /login
+2025-04-30 06:23:40,755 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:23:40] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-30 06:23:40,766 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:23:40] "GET /dashboard HTTP/1.1" 200 -
+2025-04-30 06:23:42,322 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:23:42] "GET /threat-intelligence HTTP/1.1" 200 -
+2025-04-30 06:23:45,775 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:23:45] "GET /vulnerability-data HTTP/1.1" 200 -
+2025-04-30 06:23:48,306 - security_monitor - ERROR - Error in incident data: test/threat.html
+2025-04-30 06:23:48,308 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:23:48] "GET /incident-data HTTP/1.1" 200 -
+2025-04-30 06:23:51,931 - werkzeug - INFO - 127.0.0.1 - - [30/Apr/2025 06:23:51] "GET /analytics HTTP/1.1" 200 -

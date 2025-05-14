@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Comments - Victim Site{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Comments</h2>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('victim_comment') }}">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comment</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Comment</button>
+                    </form>
+                </div>
+            </div>
+            
+            {% if comments %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Comments</h5>
+                    {% for comment in comments %}
+                    <div class="border-bottom mb-3 pb-3">
+                        <h6>{{ comment.name }}</h6>
+                        <p>{{ comment.comment|safe }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="mt-3">
+                <a href="{{ url_for('victim_site') }}" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

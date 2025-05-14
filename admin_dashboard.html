@@ -1,0 +1,401 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Security Monitoring System{% endblock %}
+
+{% block extra_head %}
+<style>
+    .chart-container {
+        height: 300px;
+        margin-bottom: 20px;
+    }
+    .log-entry {
+        border-left: 4px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .log-entry.high {
+        border-left-color: #dc3545;
+        background-color: #f8d7da;
+    }
+    .log-entry.medium {
+        border-left-color: #ffc107;
+        background-color: #fff3cd;
+    }
+    .log-entry.low {
+        border-left-color: #17a2b8;
+        background-color: #d1ecf1;
+    }
+    .timestamp {
+        font-size: 0.8rem;
+        color: #666;
+    }
+    .payload {
+        font-family: monospace;
+        padding: 5px;
+        background-color: #f8f9fa;
+        border-radius: 3px;
+        margin-top: 5px;
+    }
+    .refresh-btn {
+        margin-bottom: 20px;
+    }
+    .stats-card {
+        text-align: center;
+        padding: 15px;
+    }
+    .stats-number {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .logs-container {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    .log-entry {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        border-left: 4px solid #6c757d;
+    }
+    .log-entry.high {
+        border-left-color: #dc3545;
+    }
+    .log-entry.medium {
+        border-left-color: #ffc107;
+    }
+    .log-entry.low {
+        border-left-color: #28a745;
+    }
+    .timestamp {
+        font-size: 0.8em;
+        color: #6c757d;
+        margin: 5px 0;
+    }
+    .payload {
+        font-family: monospace;
+        background-color: #e9ecef;
+        padding: 5px;
+        border-radius: 3px;
+        word-break: break-all;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Admin Dashboard</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Attacks</h5>
+                                    <h2 id="totalAttacks">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">High Severity</h5>
+                                    <h2 id="highSeverity">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-warning text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Medium Severity</h5>
+                                    <h2 id="mediumSeverity">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Low Severity</h5>
+                                    <h2 id="lowSeverity">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Attack Types Distribution</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="attackTypesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Severity Distribution</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="severityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Attack Timeline (Last 7 Days)</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="timelineChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Recent Login Attempts</h5>
+                                    <button id="refreshData" class="btn btn-primary btn-sm">Refresh</button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Timestamp</th>
+                                                    <th>IP Address</th>
+                                                    <th>Username</th>
+                                                    <th>Status</th>
+                                                    <th>Severity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for attempt in login_attempts %}
+                                                <tr>
+                                                    <td>{{ attempt.timestamp }}</td>
+                                                    <td>{{ attempt.ip_address }}</td>
+                                                    <td>{{ attempt.payload.split(': ')[1] if attempt.payload else 'N/A' }}</td>
+                                                    <td>
+                                                        <span class="badge {% if attempt.attack_type == 'Login Success' %}bg-success{% else %}bg-danger{% endif %}">
+                                                            {{ attempt.attack_type }}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge bg-{{ attempt.severity.lower() }}">
+                                                            {{ attempt.severity }}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Recent Security Logs</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div id="recentLogs" class="logs-container">
+                                        {% for log in latest_logs %}
+                                        <div class="log-entry {{ log.severity.lower() }}">
+                                            <div class="d-flex justify-content-between">
+                                                <strong>{{ log.attack_type }}</strong>
+                                                <span class="badge bg-{{ log.severity.lower() }}">{{ log.severity }}</span>
+                                            </div>
+                                            <div class="timestamp">{{ log.timestamp }} | IP: {{ log.ip_address }} | Endpoint: {{ log.endpoint }}</div>
+                                            <div class="payload">{{ log.payload }}</div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize charts
+        const attackTypesChart = new Chart(document.getElementById('attackTypesChart'), {
+            type: 'pie',
+            data: {
+                labels: [],
+                datasets: [{
+                    data: [],
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#4BC0C0',
+                        '#9966FF'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        const severityChart = new Chart(document.getElementById('severityChart'), {
+            type: 'pie',
+            data: {
+                labels: [],
+                datasets: [{
+                    data: [],
+                    backgroundColor: [
+                        '#dc3545',
+                        '#ffc107',
+                        '#28a745'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        const timelineChart = new Chart(document.getElementById('timelineChart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Attacks',
+                    data: [],
+                    borderColor: '#dc3545',
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function updateDashboard() {
+            fetch('/api/stats')
+                .then(response => response.json())
+                .then(data => {
+                    // Update charts
+                    updateAttackTypesChart(attackTypesChart, data.attack_stats);
+                    updateSeverityChart(severityChart, data.severity_stats);
+                    updateTimelineChart(timelineChart, data.time_stats);
+                    
+                    // Update counters
+                    updateCounters(data);
+                })
+                .catch(error => console.error('Error fetching dashboard data:', error));
+                
+            // Update recent logs
+            fetch('/api/logs')
+                .then(response => response.json())
+                .then(logs => {
+                    updateRecentLogs(logs);
+                })
+                .catch(error => console.error('Error fetching logs:', error));
+        }
+
+        function updateAttackTypesChart(chart, data) {
+            chart.data.labels = data.map(item => item.attack_type);
+            chart.data.datasets[0].data = data.map(item => item.count);
+            chart.update();
+        }
+
+        function updateSeverityChart(chart, data) {
+            chart.data.labels = data.map(item => item.severity);
+            chart.data.datasets[0].data = data.map(item => item.count);
+            chart.update();
+        }
+
+        function updateTimelineChart(chart, data) {
+            chart.data.labels = data.map(item => item.day);
+            chart.data.datasets[0].data = data.map(item => item.count);
+            chart.update();
+        }
+
+        function updateCounters(data) {
+            const totalAttacks = data.attack_stats.reduce((total, item) => total + item.count, 0);
+            document.getElementById('totalAttacks').textContent = totalAttacks;
+            
+            const highSeverity = data.severity_stats.find(item => item.severity === 'High');
+            document.getElementById('highSeverity').textContent = highSeverity ? highSeverity.count : 0;
+            
+            const mediumSeverity = data.severity_stats.find(item => item.severity === 'Medium');
+            document.getElementById('mediumSeverity').textContent = mediumSeverity ? mediumSeverity.count : 0;
+            
+            const lowSeverity = data.severity_stats.find(item => item.severity === 'Low');
+            document.getElementById('lowSeverity').textContent = lowSeverity ? lowSeverity.count : 0;
+        }
+
+        function updateRecentLogs(logs) {
+            const logsContainer = document.getElementById('recentLogs');
+            
+            if (logs.length === 0) {
+                logsContainer.innerHTML = '<p>No recent attacks detected.</p>';
+                return;
+            }
+            
+            let html = '';
+            logs.forEach(log => {
+                const severityClass = log.severity.toLowerCase();
+                const badgeClass = log.severity === 'High' ? 'danger' : 
+                                   log.severity === 'Medium' ? 'warning' : 'info';
+                                   
+                html += `
+                    <div class="log-entry ${severityClass}">
+                        <div class="d-flex justify-content-between">
+                            <strong>${log.attack_type}</strong>
+                            <span class="badge bg-${badgeClass}">${log.severity}</span>
+                        </div>
+                        <div class="timestamp">${log.timestamp} | IP: ${log.ip_address} | Endpoint: ${log.endpoint}</div>
+                        <div class="payload">${log.payload}</div>
+                    </div>
+                `;
+            });
+            
+            logsContainer.innerHTML = html;
+        }
+
+        // Initial data load
+        updateDashboard();
+        
+        // Set up refresh button
+        document.getElementById('refreshData').addEventListener('click', updateDashboard);
+        
+        // Auto refresh every 30 seconds
+        setInterval(updateDashboard, 30000);
+    });
+</script>
+{% endblock %}

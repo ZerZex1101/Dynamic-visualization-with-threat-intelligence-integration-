@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}Network Monitor - Dynamic SOC{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Network Monitor</h2>
+            
+            <!-- Network Statistics Cards -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Connections</h5>
+                            <h2 class="display-4 total-connections">{{ network_stats.total_connections }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Active Connections</h5>
+                            <h2 class="display-4 active-connections">{{ network_stats.active_connections }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Listening Ports</h5>
+                            <h2 class="display-4 listening-ports">{{ network_stats.listening_ports }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Network Interfaces -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Network Interfaces</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Interface</th>
+                                    <th>Speed</th>
+                                    <th>MTU</th>
+                                    <th>Duplex</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for iface in network_stats.interfaces %}
+                                <tr>
+                                    <td>{{ iface.name }}</td>
+                                    <td>{{ iface.speed }} Mbps</td>
+                                    <td>{{ iface.mtu }}</td>
+                                    <td>{{ iface.duplex }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Network Events -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Recent Network Events</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Type</th>
+                                    <th>Severity</th>
+                                    <th>Source IP</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for event in recent_events %}
+                                <tr>
+                                    <td>{{ event.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                                    <td>{{ event.type }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 'danger' if event.severity == 'High' else 'warning' if event.severity == 'Medium' else 'info' }}">
+                                            {{ event.severity }}
+                                        </span>
+                                    </td>
+                                    <td>{{ event.source_ip }}</td>
+                                    <td>{{ event.details }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-refresh network stats every 30 seconds
+    setInterval(function() {
+        fetch('/api/network-stats')
+            .then(response => response.json())
+            .then(data => {
+                // Update network statistics
+                document.querySelector('.total-connections').textContent = data.total_connections;
+                document.querySelector('.active-connections').textContent = data.active_connections;
+                document.querySelector('.listening-ports').textContent = data.listening_ports;
+                
+                // Update interface table
+                const tbody = document.querySelector('#interfaces-table tbody');
+                tbody.innerHTML = '';
+                data.interfaces.forEach(iface => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${iface.name}</td>
+                            <td>${iface.speed} Mbps</td>
+                            <td>${iface.mtu}</td>
+                            <td>${iface.duplex}</td>
+                        </tr>
+                    `;
+                });
+            })
+            .catch(error => console.error('Error fetching network stats:', error));
+    }, 30000);
+});
+</script>
+{% endblock %} 

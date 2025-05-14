@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}Threat Intelligence - Dynamic SOC{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Threat Intelligence</h2>
+            
+            <!-- Threat Statistics -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Threats</h5>
+                            <h2 class="display-4">{{ threats|length }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Active Threats</h5>
+                            <h2 class="display-4">{{ threats|selectattr('status', 'equalto', 'active')|list|length }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Blocked Threats</h5>
+                            <h2 class="display-4">{{ threats|selectattr('status', 'equalto', 'blocked')|list|length }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Threats Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Threat List</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="threatsTable">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Type</th>
+                                    <th>Severity</th>
+                                    <th>Status</th>
+                                    <th>Source IP</th>
+                                    <th>Details</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for threat in threats %}
+                                <tr>
+                                    <td>{{ threat.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                                    <td>{{ threat.type }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 'danger' if threat.severity == 'High' else 'warning' if threat.severity == 'Medium' else 'info' }}">
+                                            {{ threat.severity }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ 'success' if threat.status == 'blocked' else 'warning' if threat.status == 'active' else 'secondary' }}">
+                                            {{ threat.status }}
+                                        </span>
+                                    </td>
+                                    <td>{{ threat.source_ip }}</td>
+                                    <td>{{ threat.details }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info" onclick="viewThreatDetails({{ threat.id }})">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-warning" onclick="editThreat({{ threat.id }})">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="deleteThreat({{ threat.id }})">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Threat Details Modal -->
+<div class="modal fade" id="threatDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Threat Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="threatDetailsContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#threatsTable').DataTable({
+        order: [[0, 'desc']],
+        pageLength: 10
+    });
+});
+
+function viewThreatDetails(threatId) {
+    fetch(`/api/threats/${threatId}`)
+        .then(response => response.json())
+        .then(data => {
+            const content = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Type:</strong> ${data.type}</p>
+                        <p><strong>Severity:</strong> ${data.severity}</p>
+                        <p><strong>Status:</strong> ${data.status}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Source IP:</strong> ${data.source_ip}</p>
+                        <p><strong>Timestamp:</strong> ${data.timestamp}</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <p><strong>Details:</strong></p>
+                        <p>${data.details}</p>
+                    </div>
+                </div>
+            `;
+            $('#threatDetailsContent').html(content);
+            $('#threatDetailsModal').modal('show');
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function editThreat(threatId) {
+    window.location.href = `/threats/edit/${threatId}`;
+}
+
+function deleteThreat(threatId) {
+    if (confirm('Are you sure you want to delete this threat?')) {
+        fetch(`/threats/delete/${threatId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error deleting threat: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}
+</script>
+{% endblock %} 

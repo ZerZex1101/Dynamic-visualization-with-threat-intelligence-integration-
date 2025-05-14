@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}View File - Victim Site{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>View File</h2>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="GET" action="{{ url_for('victim_view_file') }}">
+                        <div class="mb-3">
+                            <label for="filename" class="form-label">File Name</label>
+                            <input type="text" class="form-control" id="filename" name="filename" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">View File</button>
+                    </form>
+                </div>
+            </div>
+            
+            {% if content %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">File Content</h5>
+                </div>
+                <div class="card-body">
+                    <pre class="bg-light p-3 rounded">{{ content }}</pre>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            <div class="mt-3">
+                <a href="{{ url_for('victim_site') }}" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

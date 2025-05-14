@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Command Injection - Victim Site{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Command Injection</h2>
+            
+            <div class="alert alert-warning">
+                <h4 class="alert-heading">Warning!</h4>
+                <p>This page is intentionally vulnerable to command injection attacks. It is designed for educational purposes only.</p>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('victim_command') }}">
+                        <div class="mb-3">
+                            <label for="command" class="form-label">Enter Command</label>
+                            <input type="text" class="form-control" id="command" name="command" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Execute</button>
+                    </form>
+                </div>
+            </div>
+            
+            {% if output %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Command Output</h5>
+                </div>
+                <div class="card-body">
+                    <pre class="bg-light p-3 rounded">{{ output }}</pre>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            <div class="mt-3">
+                <a href="{{ url_for('victim_site') }}" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

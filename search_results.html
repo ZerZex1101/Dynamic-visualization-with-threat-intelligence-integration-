@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - Victim Site{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Search Results for "{{ query }}"</h2>
+            
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            {% if products %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.description }}</td>
+                            <td>${{ "%.2f"|format(product.price) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                No products found matching your search criteria.
+            </div>
+            {% endif %}
+            
+            <a href="{{ url_for('victim_site') }}" class="btn btn-primary">Back to Search</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

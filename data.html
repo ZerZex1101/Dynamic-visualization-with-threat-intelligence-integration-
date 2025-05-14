@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Vulnerability Data - Dynamic SOC{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Vulnerability Data</h2>
+            
+            <!-- Vulnerability Statistics -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Critical</h5>
+                            <h2 class="display-4">{{ vulnerabilities|selectattr('severity', 'equalto', 'critical')|list|length }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">High</h5>
+                            <h2 class="display-4">{{ vulnerabilities|selectattr('severity', 'equalto', 'high')|list|length }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Medium</h5>
+                            <h2 class="display-4">{{ vulnerabilities|selectattr('severity', 'equalto', 'medium')|list|length }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Low</h5>
+                            <h2 class="display-4">{{ vulnerabilities|selectattr('severity', 'equalto', 'low')|list|length }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vulnerabilities Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Vulnerability List</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="vulnerabilitiesTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Severity</th>
+                                    <th>Status</th>
+                                    <th>Discovered</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for vuln in vulnerabilities %}
+                                <tr>
+                                    <td>{{ vuln.name }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 'danger' if vuln.severity == 'critical' else 'warning' if vuln.severity == 'high' else 'info' if vuln.severity == 'medium' else 'success' }}">
+                                            {{ vuln.severity }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ 'success' if vuln.status == 'fixed' else 'warning' if vuln.status == 'active' else 'secondary' }}">
+                                            {{ vuln.status }}
+                                        </span>
+                                    </td>
+                                    <td>{{ vuln.discovered_at.strftime('%Y-%m-%d') }}</td>
+                                    <td>{{ vuln.description }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info" onclick="viewVulnerabilityDetails({{ vuln.id }})">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-warning" onclick="editVulnerability({{ vuln.id }})">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="deleteVulnerability({{ vuln.id }})">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vulnerability Details Modal -->
+<div class="modal fade" id="vulnerabilityDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Vulnerability Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="vulnerabilityDetailsContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#vulnerabilitiesTable').DataTable({
+        order: [[3, 'desc']],
+        pageLength: 10
+    });
+});
+
+function viewVulnerabilityDetails(vulnId) {
+    fetch(`/api/vulnerabilities/${vulnId}`)
+        .then(response => response.json())
+        .then(data => {
+            const content = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Name:</strong> ${data.name}</p>
+                        <p><strong>Severity:</strong> ${data.severity}</p>
+                        <p><strong>Status:</strong> ${data.status}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Discovered:</strong> ${data.discovered_at}</p>
+                        <p><strong>Last Updated:</strong> ${data.updated_at || 'N/A'}</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <p><strong>Description:</strong></p>
+                        <p>${data.description}</p>
+                    </div>
+                </div>
+            `;
+            $('#vulnerabilityDetailsContent').html(content);
+            $('#vulnerabilityDetailsModal').modal('show');
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function editVulnerability(vulnId) {
+    window.location.href = `/vulnerabilities/edit/${vulnId}`;
+}
+
+function deleteVulnerability(vulnId) {
+    if (confirm('Are you sure you want to delete this vulnerability?')) {
+        fetch(`/vulnerabilities/delete/${vulnId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error deleting vulnerability: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}
+</script>
+{% endblock %} 

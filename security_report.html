@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% block title %}Security Report - Dynamic SOC{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Security Report</h2>
+            <p class="text-muted">Generated on: {{ report.timestamp }}</p>
+            
+            <!-- Threats Overview -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Threats Overview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Threats</h5>
+                                    <h2 class="display-4">{{ report.threats.total }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-warning text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Active Threats</h5>
+                                    <h2 class="display-4">{{ report.threats.active }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Blocked Threats</h5>
+                                    <h2 class="display-4">{{ report.threats.blocked }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vulnerabilities Overview -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Vulnerabilities Overview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Critical</h5>
+                                    <h2 class="display-4">{{ report.vulnerabilities.critical }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-warning text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">High</h5>
+                                    <h2 class="display-4">{{ report.vulnerabilities.high }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Medium</h5>
+                                    <h2 class="display-4">{{ report.vulnerabilities.medium }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-secondary text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Low</h5>
+                                    <h2 class="display-4">{{ report.vulnerabilities.low }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Incidents Overview -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Incidents Overview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Incidents</h5>
+                                    <h2 class="display-4">{{ report.incidents.total }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Last 24 Hours</h5>
+                                    <h2 class="display-4">{{ report.incidents.last_24h }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6>Incidents by Type</h6>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for type, count in report.incidents.by_type %}
+                                <tr>
+                                    <td>{{ type }}</td>
+                                    <td>{{ count }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Status -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">System Status</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">CPU Usage</h5>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-{{ 'danger' if report.system_status.cpu_usage > 80 else 'warning' if report.system_status.cpu_usage > 60 else 'success' }}" 
+                                             role="progressbar" 
+                                             style="width: {{ report.system_status.cpu_usage }}%">
+                                            {{ report.system_status.cpu_usage }}%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Memory Usage</h5>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-{{ 'danger' if report.system_status.memory_usage > 80 else 'warning' if report.system_status.memory_usage > 60 else 'success' }}" 
+                                             role="progressbar" 
+                                             style="width: {{ report.system_status.memory_usage }}%">
+                                            {{ report.system_status.memory_usage }}%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Disk Usage</h5>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-{{ 'danger' if report.system_status.disk_usage > 80 else 'warning' if report.system_status.disk_usage > 60 else 'success' }}" 
+                                             role="progressbar" 
+                                             style="width: {{ report.system_status.disk_usage }}%">
+                                            {{ report.system_status.disk_usage }}%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate progress bars
+    const progressBars = document.querySelectorAll('.progress-bar');
+    progressBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+            bar.style.transition = 'width 1s ease-in-out';
+            bar.style.width = width;
+        }, 100);
+    });
+});
+</script>
+{% endblock %} 

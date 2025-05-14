@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}User Dashboard - Security Monitoring System{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Welcome to Your Dashboard, {{ username }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header bg-info text-white">
+                                    <h5 class="mb-0">What You Can Do</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li>Visit the vulnerable victim site to understand how SQL injection works</li>
+                                        <li>Try different SQL injection techniques on the victim site</li>
+                                        <li>Learn how to protect against SQL injection attacks</li>
+                                    </ul>
+                                    <a href="{{ url_for('victim_site') }}" class="btn btn-danger">Visit Victim Site</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header bg-success text-white">
+                                    <h5 class="mb-0">Your Recent Activity</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Timestamp</th>
+                                                    <th>Action</th>
+                                                    <th>Severity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for activity in recent_activity %}
+                                                <tr>
+                                                    <td>{{ activity.timestamp }}</td>
+                                                    <td>{{ activity.attack_type }}</td>
+                                                    <td>
+                                                        <span class="badge bg-{{ activity.severity.lower() }}">
+                                                            {{ activity.severity }}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-warning text-white">
+                                    <h5 class="mb-0">SQL Injection Examples to Try</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Example</th>
+                                                    <th>Description</th>
+                                                    <th>Expected Result</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>' OR '1'='1</code></td>
+                                                    <td>Basic authentication bypass</td>
+                                                    <td>Returns all records</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>'; DROP TABLE users; --</code></td>
+                                                    <td>Attempt to drop tables</td>
+                                                    <td>Database error</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>' UNION SELECT 1,2,3,4 --</code></td>
+                                                    <td>Union-based injection</td>
+                                                    <td>Shows additional data</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>' OR 1=1 --</code></td>
+                                                    <td>Return all records</td>
+                                                    <td>Shows all products</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add any user-specific JavaScript here
+        console.log('User dashboard loaded');
+    });
+</script>
+{% endblock %}

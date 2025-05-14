@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+
+{% block title %}System Status - Dynamic SOC{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>System Status</h1>
+        <button class="btn btn-primary" onclick="refreshStatus()">
+            <i class="fas fa-sync-alt"></i> Refresh Status
+        </button>
+    </div>
+
+    <!-- System Overview Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">CPU Usage</h5>
+                    <h2 class="card-text">{{ cpu_usage }}%</h2>
+                    <div class="progress bg-white bg-opacity-25">
+                        <div class="progress-bar" role="progressbar" style="width: {{ cpu_usage }}%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Memory Usage</h5>
+                    <h2 class="card-text">{{ memory_usage }}%</h2>
+                    <div class="progress bg-white bg-opacity-25">
+                        <div class="progress-bar" role="progressbar" style="width: {{ memory_usage }}%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Disk Usage</h5>
+                    <h2 class="card-text">{{ disk_usage }}%</h2>
+                    <div class="progress bg-white bg-opacity-25">
+                        <div class="progress-bar" role="progressbar" style="width: {{ disk_usage }}%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Network Speed</h5>
+                    <h2 class="card-text">{{ network_speed }} Mbps</h2>
+                    <small>Download: {{ download_speed }} Mbps</small><br>
+                    <small>Upload: {{ upload_speed }} Mbps</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Requirements -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">System Requirements</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Required</th>
+                            <th>Current</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Python Version</td>
+                            <td>3.8+</td>
+                            <td>{{ python_version }}</td>
+                            <td>
+                                <span class="badge bg-{{ 'success' if python_version_ok else 'danger' }}">
+                                    {{ 'OK' if python_version_ok else 'Update Required' }}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RAM</td>
+                            <td>4GB+</td>
+                            <td>{{ ram_total }}GB</td>
+                            <td>
+                                <span class="badge bg-{{ 'success' if ram_ok else 'danger' }}">
+                                    {{ 'OK' if ram_ok else 'Insufficient' }}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Disk Space</td>
+                            <td>10GB+</td>
+                            <td>{{ disk_total }}GB</td>
+                            <td>
+                                <span class="badge bg-{{ 'success' if disk_ok else 'danger' }}">
+                                    {{ 'OK' if disk_ok else 'Insufficient' }}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CPU Cores</td>
+                            <td>2+</td>
+                            <td>{{ cpu_cores }}</td>
+                            <td>
+                                <span class="badge bg-{{ 'success' if cpu_cores_ok else 'danger' }}">
+                                    {{ 'OK' if cpu_cores_ok else 'Insufficient' }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firewall Settings -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Firewall Settings</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Port</th>
+                            <th>Service</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for port in firewall_ports %}
+                        <tr>
+                            <td>{{ port.number }}</td>
+                            <td>{{ port.service }}</td>
+                            <td>
+                                <span class="badge bg-{{ 'success' if port.status == 'Open' else 'danger' }}">
+                                    {{ port.status }}
+                                </span>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-{{ 'danger' if port.status == 'Open' else 'success' }}"
+                                        onclick="togglePort({{ port.number }})">
+                                    {{ 'Close' if port.status == 'Open' else 'Open' }}
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Permissions -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">File Permissions</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>File/Directory</th>
+                            <th>Owner</th>
+                            <th>Group</th>
+                            <th>Permissions</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for file in file_permissions %}
+                        <tr>
+                            <td>{{ file.path }}</td>
+                            <td>{{ file.owner }}</td>
+                            <td>{{ file.group }}</td>
+                            <td>{{ file.permissions }}</td>
+                            <td>
+                                <span class="badge bg-{{ 'success' if file.secure else 'warning' }}">
+                                    {{ 'Secure' if file.secure else 'Review Required' }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Status -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Network Status</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Active Connections</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Protocol</th>
+                                    <th>Local Address</th>
+                                    <th>Remote Address</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for conn in active_connections %}
+                                <tr>
+                                    <td>{{ conn.protocol }}</td>
+                                    <td>{{ conn.local }}</td>
+                                    <td>{{ conn.remote }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 'success' if conn.state == 'ESTABLISHED' else 'warning' }}">
+                                            {{ conn.state }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h6>Network Interfaces</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Interface</th>
+                                    <th>IP Address</th>
+                                    <th>Status</th>
+                                    <th>Speed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for iface in network_interfaces %}
+                                <tr>
+                                    <td>{{ iface.name }}</td>
+                                    <td>{{ iface.ip }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 'success' if iface.status == 'UP' else 'danger' }}">
+                                            {{ iface.status }}
+                                        </span>
+                                    </td>
+                                    <td>{{ iface.speed }} Mbps</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function refreshStatus() {
+    location.reload();
+}
+
+function togglePort(port) {
+    // Implement port toggle functionality
+    fetch(`/api/firewall/toggle/${port}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert('Failed to toggle port: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to toggle port');
+    });
+}
+</script>
+{% endblock %} 

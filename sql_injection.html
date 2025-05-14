@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}SQL Injection Vulnerability{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h2 class="mb-0">SQL Injection Vulnerability</h2>
+                </div>
+                <div class="card-body">
+                    <h4>What is SQL Injection?</h4>
+                    <p>SQL Injection is a code injection technique that might destroy your database. It is one of the most common web hacking techniques.</p>
+                    
+                    <h4>How to Test</h4>
+                    <p>Try these payloads in the search box:</p>
+                    <ul>
+                        <li><code>' OR '1'='1</code> - Basic authentication bypass</li>
+                        <li><code>'; DROP TABLE users; --</code> - Attempt to drop tables</li>
+                        <li><code>' UNION SELECT 1,2,3,4 --</code> - Union-based injection</li>
+                        <li><code>' OR 1=1 --</code> - Return all records</li>
+                    </ul>
+
+                    <h4>Security Best Practices</h4>
+                    <ul>
+                        <li>Use parameterized queries</li>
+                        <li>Validate and sanitize user input</li>
+                        <li>Use proper error handling</li>
+                        <li>Implement least privilege principle</li>
+                    </ul>
+
+                    <div class="alert alert-warning">
+                        <strong>Warning:</strong> This is a vulnerable site for educational purposes only. Do not use these techniques on real websites.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

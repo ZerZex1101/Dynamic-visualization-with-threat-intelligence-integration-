@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - Dynamic SOC{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Security Analytics</h2>
+            
+            <!-- Threat Statistics -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Threat Distribution</h5>
+                </div>
+                <div class="card-body">
+                    {% if threat_stats %}
+                    <canvas id="threatChart"></canvas>
+                    {% else %}
+                    <p class="text-muted">No threat data available</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Vulnerability Statistics -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Vulnerability Severity Distribution</h5>
+                </div>
+                <div class="card-body">
+                    {% if vulnerability_stats %}
+                    <canvas id="vulnerabilityChart"></canvas>
+                    {% else %}
+                    <p class="text-muted">No vulnerability data available</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Incident Statistics -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Incident Types</h5>
+                </div>
+                <div class="card-body">
+                    {% if incident_stats %}
+                    <canvas id="incidentChart"></canvas>
+                    {% else %}
+                    <p class="text-muted">No incident data available</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    {% if threat_stats %}
+    // Threat Chart
+    const threatCtx = document.getElementById('threatChart').getContext('2d');
+    new Chart(threatCtx, {
+        type: 'pie',
+        data: {
+            labels: {{ threat_stats|map(attribute='type')|list|tojson }},
+            datasets: [{
+                data: {{ threat_stats|map(attribute='count')|list|tojson }},
+                backgroundColor: [
+                    '#dc3545',
+                    '#ffc107',
+                    '#0dcaf0',
+                    '#198754',
+                    '#6c757d'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+    {% endif %}
+
+    {% if vulnerability_stats %}
+    // Vulnerability Chart
+    const vulnerabilityCtx = document.getElementById('vulnerabilityChart').getContext('2d');
+    new Chart(vulnerabilityCtx, {
+        type: 'bar',
+        data: {
+            labels: {{ vulnerability_stats|map(attribute='severity')|list|tojson }},
+            datasets: [{
+                label: 'Number of Vulnerabilities',
+                data: {{ vulnerability_stats|map(attribute='count')|list|tojson }},
+                backgroundColor: [
+                    '#dc3545',
+                    '#ffc107',
+                    '#0dcaf0',
+                    '#198754'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    {% endif %}
+
+    {% if incident_stats %}
+    // Incident Chart
+    const incidentCtx = document.getElementById('incidentChart').getContext('2d');
+    new Chart(incidentCtx, {
+        type: 'doughnut',
+        data: {
+            labels: {{ incident_stats|map(attribute='type')|list|tojson }},
+            datasets: [{
+                data: {{ incident_stats|map(attribute='count')|list|tojson }},
+                backgroundColor: [
+                    '#dc3545',
+                    '#ffc107',
+                    '#0dcaf0',
+                    '#198754',
+                    '#6c757d'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+    {% endif %}
+});
+</script>
+{% endblock %} 

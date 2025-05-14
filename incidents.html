@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block title %}Incidents - Dynamic SOC{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Security Incidents</h1>
+        <a href="{{ url_for('add_incident') }}" class="btn btn-primary">Add New Incident</a>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="GET" action="{{ url_for('view_incidents') }}" class="row g-3">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="search" placeholder="Search incidents..." value="{{ request.args.get('search', '') }}">
+                </div>
+                <div class="col-md-2">
+                    <select class="form-select" name="severity">
+                        <option value="">All Severities</option>
+                        <option value="Low" {% if request.args.get('severity') == 'Low' %}selected{% endif %}>Low</option>
+                        <option value="Medium" {% if request.args.get('severity') == 'Medium' %}selected{% endif %}>Medium</option>
+                        <option value="High" {% if request.args.get('severity') == 'High' %}selected{% endif %}>High</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-select" name="status">
+                        <option value="">All Statuses</option>
+                        <option value="Open" {% if request.args.get('status') == 'Open' %}selected{% endif %}>Open</option>
+                        <option value="In Progress" {% if request.args.get('status') == 'In Progress' %}selected{% endif %}>In Progress</option>
+                        <option value="Resolved" {% if request.args.get('status') == 'Resolved' %}selected{% endif %}>Resolved</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="date" value="{{ request.args.get('date', '') }}">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">Filter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Incidents</h5>
+                    <h2 class="card-text">{{ total_incidents }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5 class="card-title">High Severity</h5>
+                    <h2 class="card-text">{{ high_severity_count }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5 class="card-title">In Progress</h5>
+                    <h2 class="card-text">{{ in_progress_count }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Resolved</h5>
+                    <h2 class="card-text">{{ resolved_count }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Type</th>
+                            <th>Severity</th>
+                            <th>Status</th>
+                            <th>Source IP</th>
+                            <th>Details</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for incident in incidents %}
+                        <tr>
+                            <td>{{ incident.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ incident.type }}</td>
+                            <td>
+                                <span class="badge bg-{{ 'danger' if incident.severity == 'High' else 'warning' if incident.severity == 'Medium' else 'info' }}">
+                                    {{ incident.severity }}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge bg-{{ 'success' if incident.status == 'Resolved' else 'warning' if incident.status == 'In Progress' else 'danger' }}">
+                                    {{ incident.status }}
+                                </span>
+                            </td>
+                            <td>{{ incident.source_ip }}</td>
+                            <td>{{ incident.details }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editIncident{{ incident.id }}">
+                                        Edit
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteIncident{{ incident.id }}">
+                                        Delete
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#viewIncident{{ incident.id }}">
+                                        View
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- View Modal -->
+                        <div class="modal fade" id="viewIncident{{ incident.id }}" tabindex="-1">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Incident Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><strong>Type:</strong> {{ incident.type }}</p>
+                                                <p><strong>Severity:</strong> {{ incident.severity }}</p>
+                                                <p><strong>Status:</strong> {{ incident.status }}</p>
+                                                <p><strong>Source IP:</strong> {{ incident.source_ip }}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><strong>Timestamp:</strong> {{ incident.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                                                <p><strong>Details:</strong></p>
+                                                <div class="border p-2">{{ incident.details }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Edit Modal -->
+                        <div class="modal fade" id="editIncident{{ incident.id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit Incident</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <form action="{{ url_for('edit_incident', id=incident.id) }}" method="POST">
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label class="form-label">Type</label>
+                                                <input type="text" class="form-control" name="type" value="{{ incident.type }}" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Severity</label>
+                                                <select class="form-select" name="severity" required>
+                                                    <option value="Low" {% if incident.severity == 'Low' %}selected{% endif %}>Low</option>
+                                                    <option value="Medium" {% if incident.severity == 'Medium' %}selected{% endif %}>Medium</option>
+                                                    <option value="High" {% if incident.severity == 'High' %}selected{% endif %}>High</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Status</label>
+                                                <select class="form-select" name="status" required>
+                                                    <option value="Open" {% if incident.status == 'Open' %}selected{% endif %}>Open</option>
+                                                    <option value="In Progress" {% if incident.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                                                    <option value="Resolved" {% if incident.status == 'Resolved' %}selected{% endif %}>Resolved</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Source IP</label>
+                                                <input type="text" class="form-control" name="source_ip" value="{{ incident.source_ip }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Details</label>
+                                                <textarea class="form-control" name="details" rows="3">{{ incident.details }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delete Modal -->
+                        <div class="modal fade" id="deleteIncident{{ incident.id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete Incident</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete this incident?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <form action="{{ url_for('delete_incident', id=incident.id) }}" method="POST" style="display: inline;">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            {% if total_pages > 1 %}
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% for p in range(1, total_pages + 1) %}
+                    <li class="page-item {% if p == page %}active{% endif %}">
+                        <a class="page-link" href="{{ url_for('view_incidents', page=p) }}">{{ p }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

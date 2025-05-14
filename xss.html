@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}XSS - Victim Site{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Cross-Site Scripting (XSS)</h2>
+            
+            <div class="alert alert-warning">
+                <h4 class="alert-heading">Warning!</h4>
+                <p>This page is intentionally vulnerable to XSS attacks. It is designed for educational purposes only.</p>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('victim_xss') }}">
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Enter Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Post Message</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Message Board</h5>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="message mb-3">
+                                {{ message|safe }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted">No messages yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            <div class="mt-3">
+                <a href="{{ url_for('victim_site') }}" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

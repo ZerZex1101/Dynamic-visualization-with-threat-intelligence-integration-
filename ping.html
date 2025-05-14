@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Ping Test - Victim Site{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Network Ping Test</h2>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('victim_ping') }}">
+                        <div class="mb-3">
+                            <label for="host" class="form-label">Host to Ping</label>
+                            <input type="text" class="form-control" id="host" name="host" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ping Host</button>
+                    </form>
+                </div>
+            </div>
+            
+            {% if result %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ping Results</h5>
+                    <pre class="bg-light p-3 rounded">{{ result }}</pre>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="mt-3">
+                <a href="{{ url_for('victim_site') }}" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

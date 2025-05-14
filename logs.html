@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}Security Logs - Security Monitoring System{% endblock %}
+
+{% block extra_head %}
+<style>
+    .log-entry {
+        border-left: 4px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .log-entry.high {
+        border-left-color: #dc3545;
+        background-color: #f8d7da;
+    }
+    .log-entry.medium {
+        border-left-color: #ffc107;
+        background-color: #fff3cd;
+    }
+    .log-entry.low {
+        border-left-color: #17a2b8;
+        background-color: #d1ecf1;
+    }
+    .timestamp {
+        font-size: 0.8rem;
+        color: #666;
+    }
+    .payload {
+        font-family: monospace;
+        padding: 5px;
+        background-color: #f8f9fa;
+        border-radius: 3px;
+        margin-top: 5px;
+        word-break: break-all;
+    }
+    .pagination {
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .filters {
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Security Logs</h2>
+        <p>Detailed logs of all detected security events.</p>
+        
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Security Event Logs</h3>
+            </div>
+            <div class="card-body">
+                <div class="filters">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select id="severityFilter" class="form-select">
+                                <option value="all">All Severities</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select id="attackTypeFilter" class="form-select">
+                                <option value="all">All Attack Types</option>
+                                <option value="sql injection">SQL Injection</option>
+                                <option value="xss">XSS</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button id="applyFilters" class="btn btn-primary w-100">Apply Filters</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="logs-container">
+                    {% if logs %}
+                        {% for log in logs %}
+                            <div class="log-entry {{ log.severity.lower() }}">
+                                <div class="d-flex justify-content-between">
+                                    <strong>{{ log.attack_type }}</strong>
+                                    <span class="badge bg-{{ 'danger' if log.severity == 'High' else 'warning' if log.severity == 'Medium' else 'info' }}">
+                                        {{ log.severity }}
+                                    </span>
+                                </div>
+                                <div class="timestamp">{{ log.timestamp }} | IP: {{ log.ip_address }} | Endpoint: {{ log.endpoint }}</div>
+                                <div class="payload">{{ log.payload }}</div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No logs found.</p>
+                    {% endif %}
+                </div>
+                
+                {% if total_pages > 1 %}
+                <nav aria-label="Log pagination">
+                    <ul class="pagination">
+                        {% if page > 1 %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('view_logs', page=page-1) }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">&laquo;</span>
+                            </li>
+                        {% endif %}
+                        
+                        {% for p in range(1, total_pages + 1) %}
+                            {% if p == page %}
+                                <li class="page-item active"><span class="page-link">{{ p }}</span></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="{{ url_for('view_logs', page=p) }}">{{ p }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if page < total_pages %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('view_logs', page=page+1) }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">&raquo;</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+                
+                <div class="mt-3 text-center">
+                    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-primary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const severityFilter = document.getElementById('severityFilter');
+        const attackTypeFilter = document.getElementById('attackTypeFilter');
+        const applyFiltersBtn = document.getElementById('applyFilters');
+        const logEntries = document.querySelectorAll('.log-entry');
+        
+        // Filter logs based on selection
+        applyFiltersBtn.addEventListener('click', function() {
+            const severityValue = severityFilter.value;
+            const attackTypeValue = attackTypeFilter.value.toLowerCase();
+            
+            logEntries.forEach(entry => {
+                let showBySeverity = true;
+                let showByAttackType = true;
+                
+                // Filter by severity
+                if (severityValue !== 'all') {
+                    showBySeverity = entry.classList.contains(severityValue);
+                }
+                
+                // Filter by attack type
+                if (attackTypeValue !== 'all') {
+                    const attackType = entry.querySelector('strong').textContent.toLowerCase();
+                    showByAttackType = attackType.includes(attackTypeValue);
+                }
+                
+                // Show or hide based on combined filters
+                if (showBySeverity && showByAttackType) {
+                    entry.style.display = 'block';
+                } else {
+                    entry.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+// Store in localStorage
+const existingLogs = JSON.parse(localStorage.getItem('securityLogs') || '[]');
+existingLogs.push({
+    timestamp: new Date().toISOString(),
+    severity: type === 'Normal' ? 'INFO' : 'WARNING',
+    requestType: type,
+    source: details.endpoint || 'Unknown',
+    user: details.user || 'anonymous',
+    message: `${type} request to ${details.endpoint}`,
+    details: JSON.stringify(details)
+});
+localStorage.setItem('securityLogs', JSON.stringify(existingLogs));
+</script>
+{% endblock %}

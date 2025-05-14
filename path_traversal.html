@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Path Traversal - Victim Site{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Path Traversal</h2>
+            
+            <div class="alert alert-warning">
+                <h4 class="alert-heading">Warning!</h4>
+                <p>This page is intentionally vulnerable to Path Traversal attacks. It is designed for educational purposes only.</p>
+            </div>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="GET" action="{{ url_for('victim_path_traversal') }}">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Select File</label>
+                            <select class="form-select" id="file" name="file" required>
+                                <option value="">Choose a file...</option>
+                                <option value="file1.txt">File 1</option>
+                                <option value="file2.txt">File 2</option>
+                                <option value="file3.txt">File 3</option>
+                            </select>
+                            <div class="form-text">Select a file to view its contents.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">View File</button>
+                    </form>
+                </div>
+            </div>
+            
+            {% if file_content %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">File Contents</h5>
+                </div>
+                <div class="card-body">
+                    <pre class="bg-light p-3">{{ file_content }}</pre>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            <div class="mt-3">
+                <a href="{{ url_for('victim_site') }}" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

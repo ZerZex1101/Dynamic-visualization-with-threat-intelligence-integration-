@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Dynamic SOC{% endblock %}
+
+{% block extra_head %}
+<link href="https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/css/jquery.dataTables.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Security Dashboard</h1>
+        <div>
+            <a href="{{ url_for('system_status') }}" class="btn btn-info me-2">
+                <i class="fas fa-server"></i> System Status
+            </a>
+            <button class="btn btn-success" onclick="exportData()">
+                <i class="fas fa-download"></i> Export Data
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('threat_intelligence') }}">
+                            <i class="fas fa-shield-alt"></i> Threats
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('vulnerability_data') }}">
+                            <i class="fas fa-bug"></i> Vulnerabilities
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('incident_data') }}">
+                            <i class="fas fa-exclamation-triangle"></i> Incidents
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('analytics') }}">
+                            <i class="fas fa-chart-bar"></i> Analytics
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <!-- Action Buttons -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <a href="{{ url_for('vulnerability_scan') }}" class="btn btn-primary btn-lg w-100">
+                        <i class="fas fa-shield-alt"></i> Run Vulnerability Scan
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('network_monitor') }}" class="btn btn-info btn-lg w-100">
+                        <i class="fas fa-network-wired"></i> Network Monitor
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('security_report') }}" class="btn btn-success btn-lg w-100">
+                        <i class="fas fa-file-alt"></i> Security Report
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Threats</h5>
+                            <h2 class="card-text">{{ total_threats }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Blocked Attacks</h5>
+                            <h2 class="card-text">{{ blocked_attacks }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Active Vulnerabilities</h5>
+                            <h2 class="card-text">{{ active_vulnerabilities }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Critical Incidents</h5>
+                            <h2 class="card-text">{{ critical_incidents }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Threat Distribution</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="threatChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Attack Trends</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="trendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Incidents -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Recent Security Incidents</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="incidentsTable">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Type</th>
+                                    <th>Severity</th>
+                                    <th>Source IP</th>
+                                    <th>Details</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for incident in recent_incidents %}
+                                <tr>
+                                    <td>{{ incident.timestamp }}</td>
+                                    <td>{{ incident.type }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ incident.severity_color }}">
+                                            {{ incident.severity }}
+                                        </span>
+                                    </td>
+                                    <td>{{ incident.source_ip }}</td>
+                                    <td>{{ incident.details }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ incident.status_color }}">
+                                            {{ incident.status }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Initialize DataTable
+    $('#incidentsTable').DataTable({
+        order: [[0, 'desc']],
+        pageLength: 10
+    });
+
+    // Threat Distribution Chart
+    const threatCtx = document.getElementById('threatChart').getContext('2d');
+    new Chart(threatCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['SQL Injection', 'XSS', 'Command Injection', 'Path Traversal', 'LFI'],
+            datasets: [{
+                data: [30, 25, 15, 20, 10],
+                backgroundColor: [
+                    '#dc3545',
+                    '#ffc107',
+                    '#0dcaf0',
+                    '#198754',
+                    '#6c757d'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // Attack Trends Chart
+    const trendCtx = document.getElementById('trendChart').getContext('2d');
+    new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Attack Attempts',
+                data: [65, 59, 80, 81, 56, 55],
+                borderColor: '#dc3545',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
+
+function exportData() {
+    // Export threats
+    fetch('/api/threats')
+        .then(response => response.json())
+        .then(data => {
+            const csv = convertToCSV(data);
+            downloadCSV(csv, 'threats.csv');
+        });
+
+    // Export vulnerabilities
+    fetch('/api/vulnerabilities')
+        .then(response => response.json())
+        .then(data => {
+            const csv = convertToCSV(data);
+            downloadCSV(csv, 'vulnerabilities.csv');
+        });
+
+    // Export incidents
+    fetch('/api/incidents')
+        .then(response => response.json())
+        .then(data => {
+            const csv = convertToCSV(data);
+            downloadCSV(csv, 'incidents.csv');
+        });
+}
+
+function convertToCSV(data) {
+    if (data.length === 0) return '';
+    
+    const headers = Object.keys(data[0]);
+    const csvRows = [headers.join(',')];
+    
+    for (const row of data) {
+        const values = headers.map(header => {
+            const value = row[header] || '';
+            return `"${value.toString().replace(/"/g, '""')}"`;
+        });
+        csvRows.push(values.join(','));
+    }
+    
+    return csvRows.join('\n');
+}
+
+function downloadCSV(csv, filename) {
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
+{% endblock %}
